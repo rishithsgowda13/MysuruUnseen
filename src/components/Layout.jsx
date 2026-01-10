@@ -1,4 +1,5 @@
 import React, { useState, useLayoutEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import ParticleBackground from './ParticleBackground';
 
@@ -24,10 +25,14 @@ const Layout = ({ children }) => {
         return () => window.removeEventListener('storage', handleStorage);
     }, [theme]);
 
+    const location = useLocation();
+    const hideNavbarRoutes = ['/login', '/signup', '/forgot-password'];
+    const showNavbar = !hideNavbarRoutes.includes(location.pathname);
+
     return (
         <>
             {theme === 'dark' && <ParticleBackground />}
-            <Navbar />
+            {showNavbar && <Navbar />}
             <div className="layout-content" style={{ position: 'relative' }}>
                 {children}
             </div>

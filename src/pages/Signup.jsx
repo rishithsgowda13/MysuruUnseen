@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Mail, Phone, Lock, User, CheckCircle } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { useAuth } from '../context/AuthContext';
 
 const Signup = () => {
     const navigate = useNavigate();
     const { t } = useLanguage();
+    const { login } = useAuth();
     const [step, setStep] = useState(1);
     // 1: Details (Name/Email/Phone), 2: Verify Both OTPs, 3: Password
 
@@ -61,9 +63,9 @@ const Signup = () => {
         const existingUsers = JSON.parse(localStorage.getItem('local_users') || '[]');
         localStorage.setItem('local_users', JSON.stringify([...existingUsers, newUser]));
 
-        localStorage.setItem('userName', formData.name);
+        login({ name: formData.name, email: formData.email, role: 'user' });
         alert("Account Created Successfully! Logging you in...");
-        navigate('/dashboard/user');
+        navigate('/user-dashboard'); // Fixed path from /dashboard/user to /user-dashboard
     };
 
     const handleGoogleSignIn = () => {
@@ -83,8 +85,8 @@ const Signup = () => {
                 localStorage.setItem('local_users', JSON.stringify([...existingUsers, googleUser]));
             }
 
-            localStorage.setItem('userName', 'Google User');
-            navigate('/dashboard/user');
+            login({ name: 'Google User', email: 'google@example.com', role: 'user' });
+            navigate('/user-dashboard'); // Fixed path
         }, 1500);
     };
 

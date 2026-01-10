@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
     const navigate = useNavigate();
     const { t } = useLanguage();
+    const { login } = useAuth();
     const [formData, setFormData] = useState({
         identifier: '', // Email or Phone
         password: ''
@@ -19,24 +21,20 @@ const Login = () => {
 
         // Role-based Credentials check
         if (formData.identifier === 'admin@mysuru.com' && formData.password === 'Admin@2025') {
-            localStorage.setItem('userName', 'Admin');
-            localStorage.setItem('role', 'admin');
+            login({ name: 'Admin', role: 'admin', email: formData.identifier });
             navigate('/owner-dashboard');
             return;
         }
 
         if (formData.identifier === 'partner@mysuru.com' && formData.password === 'Partner@2025') {
-            localStorage.setItem('userName', 'Partner');
-            localStorage.setItem('role', 'partner');
+            login({ name: 'Partner', role: 'partner', email: formData.identifier });
             navigate('/partner-dashboard');
             return;
         }
 
         // Standard User Login (Fallback for generic user entry)
         if (formData.identifier && formData.password) {
-            localStorage.setItem('userName', 'Traveler');
-            localStorage.setItem('userEmail', formData.identifier);
-            localStorage.setItem('role', 'user');
+            login({ name: 'Traveler', role: 'user', email: formData.identifier });
             navigate('/user-dashboard');
         } else {
             alert('Please enter your credentials.');

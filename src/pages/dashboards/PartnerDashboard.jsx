@@ -141,7 +141,7 @@ const PartnerDashboard = () => {
                     </div>
                     <div>
                         <h2 className="text-gradient" style={{ fontSize: '2rem' }}>Partner Portal</h2>
-                        <p style={{ color: 'var(--color-text-muted)' }}>{activeTab === 'dashboard' ? 'Manage your listings and collaborations' : 'Manage your preferences'}</p>
+                        <p style={{ color: 'var(--color-text-muted)' }}>Hello, {partnerName} | {activeTab === 'dashboard' ? 'Manage your listings and collaborations' : 'Manage your preferences'}</p>
                     </div>
                 </div>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Compass, Map, Calendar, Heart, Settings, User } from 'lucide-react';
+import { Compass, Map, Calendar, Heart, Settings, User, MapPin } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
 
@@ -41,7 +41,6 @@ const UserDashboard = () => {
             background: 'linear-gradient(90deg, #D1F2EB 0%, #F9E79F 50%, #F5B7B1 100%)', // Pastel Green -> Yellow -> Red gradient
             padding: '4rem 2rem',
             display: 'flex',
-            flexDirection: 'col',
             flexDirection: 'column',
             justifyContent: 'center'
         }}>
@@ -71,16 +70,25 @@ const UserDashboard = () => {
 
                 {/* Header - Optional, keep it minimal if following strict reference, but 'Hello Traveler' is nice */}
                 {/* Reference image doesn't plainly show a big header, but we'll keep it cleaner */}
-                <div style={{ marginBottom: '4rem', textAlign: 'center' }}>
-                    <h1 style={{
-                        fontSize: '3rem',
-                        fontWeight: 'bold',
-                        color: '#3E2723',
-                        marginBottom: '0.5rem',
-                        fontFamily: 'var(--font-serif)'
-                    }}>
-                        {t_safe('explore_mysore', 'Explore Mysuru')}
-                    </h1>
+                <div style={{ marginBottom: '4rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
+                        <MapPin size={48} color="#3E2723" />
+                        <h1 style={{
+                            fontSize: '3.5rem',
+                            fontWeight: 'bold',
+                            color: '#3E2723',
+                            margin: 0,
+                            fontFamily: 'var(--font-serif)'
+                        }}>
+                            Mysuru Unseen
+                        </h1>
+                    </div>
+                    <p style={{ fontSize: '1.2rem', color: '#5D4037', fontStyle: 'italic', marginBottom: '1.5rem' }}>
+                        Unveiling the Hidden Heritage of Mysore
+                    </p>
+                    <h2 style={{ fontSize: '2rem', color: '#3E2723', fontWeight: 'normal' }}>
+                        Hello, <span style={{ fontWeight: 'bold' }}>{localStorage.getItem('userName') || 'Traveler'}</span>
+                    </h2>
                 </div>
 
                 {/* Grid Layout */}

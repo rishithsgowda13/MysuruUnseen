@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Crown, Users, Briefcase, Settings, LogOut, Sun, User, Trash2, CheckCircle, XCircle, Clock } from 'lucide-react';
+import { Crown, Users, Briefcase, Settings, LogOut, Sun, User, Trash2, CheckCircle, XCircle, Clock, Search } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import ThemeToggle from '../../components/ThemeToggle';
 import LanguageSwitcher from '../../components/LanguageSwitcher';
@@ -27,6 +27,18 @@ const OwnerDashboard = () => {
     });
 
     const [deletePassword, setDeletePassword] = useState('');
+    const [userSearchTerm, setUserSearchTerm] = useState('');
+    const [partnerSearchTerm, setPartnerSearchTerm] = useState('');
+
+    const filteredUsers = users.filter(user =>
+        user.name.toLowerCase().includes(userSearchTerm.toLowerCase()) ||
+        user.email.toLowerCase().includes(userSearchTerm.toLowerCase())
+    );
+
+    const filteredPartners = partners.filter(partner =>
+        partner.name.toLowerCase().includes(partnerSearchTerm.toLowerCase()) ||
+        partner.email.toLowerCase().includes(partnerSearchTerm.toLowerCase())
+    );
 
     // System Controls State
     const [maintenanceMode, setMaintenanceMode] = useState(localStorage.getItem('maintenanceMode') === 'true');
@@ -193,7 +205,7 @@ const OwnerDashboard = () => {
                     </div>
                     <div>
                         <h2 className="text-gradient" style={{ fontSize: '2rem', margin: 0 }}>{t('admin_console')}</h2>
-                        <p style={{ color: 'var(--color-text-muted)' }}>{activeTab === 'dashboard' ? t('platform_overview') : t('system_configuration')}</p>
+                        <p style={{ color: 'var(--color-text-muted)' }}>Hello, {profile.name} | {activeTab === 'dashboard' ? t('platform_overview') : t('system_configuration')}</p>
                     </div>
                 </div>
 
@@ -383,8 +395,30 @@ const OwnerDashboard = () => {
                     </section>
 
                     <section style={{ marginBottom: '3rem' }}>
-                        <h3 className="text-gradient" style={{ fontSize: '1.5rem', marginBottom: '1.5rem' }}>{t('users_directory')}</h3>
-                        <div className="card" style={{ padding: '0', overflow: 'hidden' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+                            <h3 className="text-gradient" style={{ fontSize: '1.5rem' }}>{t('users_directory')}</h3>
+
+                            {/* User Search Bar */}
+                            <div style={{ position: 'relative', minWidth: '300px' }}>
+                                <Search size={20} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--color-text-muted)' }} />
+                                <input
+                                    type="text"
+                                    placeholder="Search users..."
+                                    value={userSearchTerm}
+                                    onChange={(e) => setUserSearchTerm(e.target.value)}
+                                    style={{
+                                        width: '100%',
+                                        padding: '10px 10px 10px 40px',
+                                        borderRadius: '20px',
+                                        border: '1px solid var(--border-light)',
+                                        outline: 'none',
+                                        background: 'var(--color-bg-secondary)'
+                                    }}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="card" style={{ padding: '0', overflow: 'hidden', marginBottom: '3rem' }}>
                             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                                 <thead>
                                     <tr style={{ background: 'var(--color-bg-secondary)', textAlign: 'left' }}>
@@ -394,13 +428,77 @@ const OwnerDashboard = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {users.map((user) => (
-                                        <tr key={user.id} style={{ borderTop: '1px solid var(--color-bg-secondary)' }}>
-                                            <td style={{ padding: '1rem', color: 'var(--color-text-main)' }}>{user.name}</td>
-                                            <td style={{ padding: '1rem', color: 'var(--color-text-muted)' }}>{user.email}</td>
-                                            <td style={{ padding: '1rem', color: 'var(--color-text-muted)' }}>{user.phone}</td>
+                                    {filteredUsers.length > 0 ? (
+                                        filteredUsers.map((user) => (
+                                            <tr key={user.id} style={{ borderTop: '1px solid var(--color-bg-secondary)' }}>
+                                                <td style={{ padding: '1rem', color: 'var(--color-text-main)' }}>{user.name}</td>
+                                                <td style={{ padding: '1rem', color: 'var(--color-text-muted)' }}>{user.email}</td>
+                                                <td style={{ padding: '1rem', color: 'var(--color-text-muted)' }}>{user.phone}</td>
+                                            </tr>
+                                        ))
+                                    ) : (
+                                        <tr>
+                                            <td colSpan="3" style={{ padding: '2rem', textAlign: 'center', color: 'var(--color-text-muted)' }}>No users found.</td>
                                         </tr>
-                                    ))}
+                                    )}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        {/* Partners Directory */}
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+                            <h3 className="text-gradient" style={{ fontSize: '1.5rem' }}>Partner Directory</h3>
+
+                            {/* Partner Search Bar */}
+                            <div style={{ position: 'relative', minWidth: '300px' }}>
+                                <Search size={20} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--color-text-muted)' }} />
+                                <input
+                                    type="text"
+                                    placeholder="Search partners..."
+                                    value={partnerSearchTerm}
+                                    onChange={(e) => setPartnerSearchTerm(e.target.value)}
+                                    style={{
+                                        width: '100%',
+                                        padding: '10px 10px 10px 40px',
+                                        borderRadius: '20px',
+                                        border: '1px solid var(--border-light)',
+                                        outline: 'none',
+                                        background: 'var(--color-bg-secondary)'
+                                    }}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="card" style={{ padding: '0', overflow: 'hidden' }}>
+                            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                                <thead>
+                                    <tr style={{ background: 'var(--color-bg-secondary)', textAlign: 'left' }}>
+                                        <th style={{ padding: '1rem', color: 'var(--color-text-main)' }}>Details</th>
+                                        <th style={{ padding: '1rem', color: 'var(--color-text-main)' }}>Contact</th>
+                                        <th style={{ padding: '1rem', color: 'var(--color-text-main)' }}>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {filteredPartners.length > 0 ? (
+                                        filteredPartners.map((partner) => (
+                                            <tr key={partner.id} style={{ borderTop: '1px solid var(--color-bg-secondary)' }}>
+                                                <td style={{ padding: '1rem', color: 'var(--color-text-main)' }}>
+                                                    <strong>{partner.name}</strong>
+                                                </td>
+                                                <td style={{ padding: '1rem', color: 'var(--color-text-muted)' }}>
+                                                    <div>{partner.email}</div>
+                                                    <div>{partner.phone}</div>
+                                                </td>
+                                                <td style={{ padding: '1rem', color: 'var(--color-text-muted)' }}>
+                                                    <span style={{ background: '#dcfce7', color: '#166534', padding: '4px 8px', borderRadius: '12px', fontSize: '0.8rem' }}>Active</span>
+                                                </td>
+                                            </tr>
+                                        ))
+                                    ) : (
+                                        <tr>
+                                            <td colSpan="3" style={{ padding: '2rem', textAlign: 'center', color: 'var(--color-text-muted)' }}>No partners found.</td>
+                                        </tr>
+                                    )}
                                 </tbody>
                             </table>
                         </div>

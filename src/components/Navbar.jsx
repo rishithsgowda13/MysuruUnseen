@@ -25,12 +25,12 @@ const Navbar = () => {
                 <li><Link to="/user-dashboard">{t('dashboard')}</Link></li>
             </ul>
 
-            {!isLoggedIn && (
+            {/* {!isLoggedIn && (
                 <div className="navbar-actions">
                     <Link to="/login" className="btn-outline">{t('login')}</Link>
                     <Link to="/signup" className="btn-primary">{t('join_now')}</Link>
                 </div>
-            )}
+            )} */}
         </nav>
     );
 };

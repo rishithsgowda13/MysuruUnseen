@@ -18,35 +18,42 @@ import Settings from './pages/Settings';
 
 import Layout from './components/Layout';
 import { LanguageProvider } from './context/LanguageContext';
+import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => {
     console.log('Rendering full App structure...');
     return (
         <LanguageProvider>
-            <Router>
-                <Layout>
-                    <Routes>
-                        <Route path="/maintenance" element={<Maintenance />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/forgot-password" element={<ForgotPassword />} />
-                        <Route path="/signup" element={<Signup />} />
-                        <Route path="/owner-dashboard" element={<OwnerDashboard />} />
+            <AuthProvider>
+                <Router>
+                    <Layout>
+                        <Routes>
+                            <Route path="/maintenance" element={<Maintenance />} />
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/forgot-password" element={<ForgotPassword />} />
+                            <Route path="/signup" element={<Signup />} />
 
-                        <Route element={<MaintenanceGuard />}>
-                            <Route path="/" element={<UserDashboard />} />
-                            <Route path="/landing" element={<Home />} />
-                            <Route path="/user-dashboard" element={<UserDashboard />} /> {/* Keep for backward compat if needed */}
-                            <Route path="/partner-dashboard" element={<PartnerDashboard />} />
-                            <Route path="/explore" element={<Explore />} />
-                            <Route path="/trip-planning" element={<TripPlanning />} />
-                            <Route path="/explore/:type" element={<PlacesList />} />
-                            <Route path="/settings" element={<Settings />} />
-                            <Route path="/map" element={<MapView />} />
-                            <Route path="/artisan/:id" element={<ArtisanProfile />} />
-                        </Route>
-                    </Routes>
-                </Layout>
-            </Router>
+                            {/* Protected Routes */}
+                            <Route element={<ProtectedRoute />}>
+                                <Route element={<MaintenanceGuard />}>
+                                    <Route path="/" element={<UserDashboard />} />
+                                    <Route path="/landing" element={<Home />} />
+                                    <Route path="/owner-dashboard" element={<OwnerDashboard />} />
+                                    <Route path="/user-dashboard" element={<UserDashboard />} />
+                                    <Route path="/partner-dashboard" element={<PartnerDashboard />} />
+                                    <Route path="/explore" element={<Explore />} />
+                                    <Route path="/trip-planning" element={<TripPlanning />} />
+                                    <Route path="/explore/:type" element={<PlacesList />} />
+                                    <Route path="/settings" element={<Settings />} />
+                                    <Route path="/map" element={<MapView />} />
+                                    <Route path="/artisan/:id" element={<ArtisanProfile />} />
+                                </Route>
+                            </Route>
+                        </Routes>
+                    </Layout>
+                </Router>
+            </AuthProvider>
         </LanguageProvider>
     );
 };
