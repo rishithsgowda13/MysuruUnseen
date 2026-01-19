@@ -1,65 +1,79 @@
-<p align="center">
-  <img src="./logo.jpeg" alt="Mysuru Sampada Logo" width="220"/>
-</p>
+<p align="center"> <img src="./logo.jpeg" alt="Mysuru Sampada Logo" width="220"/> </p>
+Mysuru Sampada – Multi-Language Tourism Platform
 
-# Mysuru Sampada – Multi-Language Tourism Platform
+Mysuru Sampada is a modern, multi-language tourism web application designed to showcase Mysuru’s cultural heritage, hidden gems, and travel experiences through an interactive and feature-rich interface.
 
-<p align="center">
-  🌐 <a href="https://mysurusampada.vercel.app" target="_blank"><b>Live Demo</b></a>
-</p>
+This project is built with a full-stack vision. The frontend is fully implemented and deployed, while backend services have been developed locally and are ready for integration.
 
+🌐 Live Demo: https://mysurusampada.vercel.app
 
-Mysuru Sampada is a modern, multi-language tourism web application designed to showcase Mysuru’s cultural heritage, attractions, and travel experiences through an interactive and visually rich interface.
+🌟 Project Highlights
 
-The project is built with a **full-stack vision**, where the frontend is fully implemented and backend services have been developed locally and are ready for integration.
+🌍 Multi-language support (English, Hindi, Kannada)
 
----
+🌗 Light Mode & Dark Mode
 
-## 🌟 Project Highlights
-- Multi-language support (English, Hindi, Kannada)
-- Clean and premium UI inspired by Mysuru’s cultural heritage
-- Dark / Light theme support
-- User, Partner, and Admin dashboard structure
-- Designed with scalability and backend integration in mind
+🧭 AI-assisted trip planning workflow
 
----
+🧑‍💼 User, Partner, and Admin dashboards
 
-## 🌐 Multi-Language Support (i18n)
-- **3 Languages**: English, Hindi (हिंदी), Kannada (ಕನ್ನಡ)
-- **160+ Translation Keys** across the application
-- **Instant language switching** with persistence using `localStorage`
-- Complete coverage of all user-facing text
+🧠 Designed for backend scalability
 
----
+🚀 Deployed on Vercel
 
-## 📄 Pages & Functionality
+🌐 Multi-Language Support (i18n)
 
-### Core Pages
-- **Home** – Platform introduction and featured sections  
-- **Authentication** – Login, Signup, Forgot Password (UI + flow)  
-- **Explore** – Famous Places, Hidden Gems, Hotels, Food, Culture, Artists  
-- **Trip Planning** – Interactive itinerary planning interface  
-- **Settings** – Language selection, profile settings, theme toggle  
+3 Languages: English, Hindi (हिंदी), Kannada (ಕನ್ನಡ)
 
-### Dashboards
-- **User Dashboard** – Exploration shortcuts, saved items, quick actions  
-- **Admin Dashboard** – User and partner management layouts with statistics  
-- **Partner Dashboard** – Partner-focused management interface  
+160+ translation keys
 
-> Note: The current repository version demonstrates frontend structure and flows. These are designed to connect seamlessly with backend APIs.
+Instant language switching
 
----
+Language preference stored using localStorage
 
-## 🎨 Design & UI Features
-- Dark / Light theme with smooth transitions  
-- Glass-morphism inspired UI components  
-- Particle background with mouse interaction  
-- Custom glowing cursor effect  
-- Fully responsive design for all screen sizes  
+Full coverage of all user-facing text
 
----
+📄 Pages & Functionality
+Core Pages
 
-## 📁 Project Structure
+Home / User Dashboard – Personalized landing with navigation shortcuts
+
+Explore – Famous places, hidden gems, food, culture, artists
+
+Trip Planning – AI-assisted itinerary builder
+
+Maps – Location-based exploration
+
+Settings – Theme toggle, language selection
+
+Dashboards
+
+User Dashboard – Trips overview and actions
+
+Admin Dashboard – User & partner management, statistics
+
+Partner Dashboard – Partner-specific management UI
+
+The current repository demonstrates complete frontend flows designed to seamlessly connect with backend APIs.
+
+🎨 UI & UX Features
+
+Light / Dark mode toggle
+
+Glass-morphism inspired components
+
+Particle background animation
+
+Custom glowing cursor
+
+Fully responsive layout
+
+📸 Screenshots
+AI-Powered Trip Creation
+
+A comprehensive trip planning workflow where users configure destinations, dates, budget, accommodation, food preferences, dining style, and transport options in a single guided interface.
+
+📁 Project Structure
 ```
 Mysuru Sampada/
 ├── src/
@@ -87,6 +101,8 @@ Mysuru Sampada/
 │ ├── main.jsx
 │ └── index.css
 ├── public/
+│ └── screenshots/
+│ └── create-trip.png
 ├── index.html
 ├── package.json
 ├── vite.config.js
@@ -94,68 +110,81 @@ Mysuru Sampada/
 └── README.md
 ```
 
----
+🔧 Technologies Used
+Frontend
 
-## 🔧 Technologies Used
+React (Hooks)
 
-### Frontend
-- React (Hooks)
-- React Router
-- Vite
-- Lucide React
-- CSS Variables
-- Canvas API
+React Router
 
-### Backend (Implemented Locally)
-- Node.js
-- REST API architecture
-- PostgreSQL / Supabase
-- Authentication and authorization logic
+Vite
 
----
+Lucide React
 
-## 🧪 Data & Current Setup
-The current repository uses mock data to demonstrate application flows, dashboards, and UI behavior.
+CSS Variables
 
-This setup will be replaced with live backend APIs once the backend code is integrated into the repository.
+Canvas API
 
----
+Backend (Implemented Locally)
 
-## 🛠 Backend Implementation
-The backend for Mysuru Sampada has been designed and implemented locally as part of the full-stack development process.
+Node.js
+
+REST API architecture
+
+PostgreSQL / Supabase
+
+Authentication & authorization logic
+
+🧪 Current Setup
+
+Mock data is used for UI flows and dashboards
+
+Backend logic is implemented locally
+
+Ready for API integration into this repository
+
+🛠 Backend Implementation (Planned Integration)
 
 Backend responsibilities include:
-- REST API development using Node.js  
-- Database design and integration  
-- Authentication and authorization  
-- Dynamic data handling for places, trips, and users  
-- Admin and partner management APIs  
 
-The backend will be pushed and integrated into this repository as part of a future update.
+REST API development
 
----
+Database schema design
 
-## 📌 Project Status
-🟢 **Completed (v1)**  
+User authentication & roles
 
-The core application features, UI, and system architecture are fully implemented.  
-Backend services are implemented locally and ready for repository integration.
+Trip, places, and booking logic
 
----
+Admin & partner management APIs
 
-## 🎯 Future Enhancements
-- Full backend integration with live APIs  
-- AI-assisted trip planning logic  
-- Real-time booking system  
-- Payment gateway integration  
-- Mobile application (React Native)  
-- Support for additional regional languages  
+Backend code will be pushed to this repository in a future update.
 
----
+📌 Project Status
 
-## 📄 License
+🟢 Completed (v1 – Frontend)
+
+Core features and UI fully implemented
+
+Multi-language and theme support completed
+
+Backend services ready for integration
+
+🎯 Future Enhancements
+
+Full backend API integration
+
+AI-driven itinerary recommendations
+
+Real-time bookings
+
+Payment gateway integration
+
+Mobile app (React Native)
+
+Additional Indian languages
+
+📄 License
+
 This project is built for educational and demonstration purposes.
 
----
-
-**Built with ❤️ for Mysuru Tourism**
+Built with ❤️ for Mysuru Tourism
